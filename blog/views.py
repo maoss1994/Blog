@@ -11,6 +11,7 @@ def post_detail(request, year, month, day, id):
                              publish__year=year,
                              publish__month=month,
                              publish__day=day)
+    post.increase_views()
     post.body = markdown.markdown(post.body,
                                   extensions=[
                                       'markdown.extensions.extra',
