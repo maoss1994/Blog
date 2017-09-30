@@ -1,3 +1,5 @@
+import markdown
+from django.utils.html import strip_tags
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
@@ -42,6 +44,7 @@ class Post(models.Model):
 
     objects = models.Manager()
     published = PublishedManage()
+    views = models.PositiveIntegerField(default=0)
 
     class Meta:
         ordering = ('-publish',)
@@ -49,8 +52,21 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
+    def increase_views(self):
+        self.views += 1
+        self.save(update_fields=['views'])
+
     def get_absolute_url(self):
         return reverse('blog:post_detail', args=[self.publish.year,
                                                  self.publish.strftime('%m'),
                                                  self.publish.strftime('%d'),
                                                  self.id])
+
+    def save(self, *args, **kwargs):
+        if not self.summary:
+            md = markdown.Markdown(extensions=[
+                'markdown.extensions.extra',
+                'markdown.extensions.codehilite',
+            ])
+            self.summary = strip_tags(md.convert(self.body))[:54]
+        super(Post, self).save(*args, **kwargs)
