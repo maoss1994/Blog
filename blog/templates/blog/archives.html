@@ -2,73 +2,74 @@
 {% block main %}
     {% load blog_tags %}
     <div class="content-wrap">
-          <div id="content" class="content">
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
-
-    <span class="archive-page-counter">
+        <div id="content" class="content">
+            <section id="posts" class="posts-collapse">
+                <span class="archive-move-on"></span>
+                <span class="archive-page-counter">
       非常好! 目前共计 {{ posts.count }} 篇日志。 继续努力。
     </span>
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2017"
-              style="opacity: 1; display: block; transform: translateX(0px);">2017{% archives as archives%}
-              {{ archives.post }}
-          </h2>
-        </div>
-      {% for post in posts %}
-        {% if post.created.year == 2017 %}
-  <article class="post post-type-normal"
-           style="opacity: 1; display: block; transform: translateY(0px);">
-    <header class="post-header">
-      <h1 class="post-title">
-            <a class="post-title-link" href="{{ post.get_absolute_url }}">
-                <span>{{ post.title }}</span>
-            </a>
-      </h1>
-      <div class="post-meta">
-        <time class="post-time" datetime="{{ post.created }}" content="{{ post.created|date:'Y-m-d' }}">
-            {{ post.created|date:'m-d' }}
-        </time>
-      </div>
-    </header>
-  </article>
-        {% endif %}
-      {% endfor %}
-  </section>
-          {% if is_paginated %}
-            <nav class="pagination">
-                {% if page_obj.has_previous %}
-                <a class="extend prev" rel="prev" href="?page={{page_obj.previous_page_number }}"><i class="fa fa-angle-left"></i></a>
-                {% endif %}
-                {% if first  %}
-                    <span class="page-number" href="?page=1">1</span>
-                {% endif %}
-                {% if left %}
-                    {% if left_has_more %}
-                        <span class="space">…</span>
+                <div class="collection-title">
+                    <h2 class="archive-year motion-element" id="archive-year-2017">2017{% archives as archives %}
+                        {{ archives.post }}
+                    </h2>
+                </div>
+                {% for post in posts %}
+                    {% if post.created.year == 2017 %}
+                        <article class="post post-type-normal"
+                                 style="opacity: 1; display: block; transform: translateY(0px);">
+                            <header class="post-header">
+                                <h1 class="post-title">
+                                    <a class="post-title-link" href="{{ post.get_absolute_url }}">
+                                        <span>{{ post.title }}</span>
+                                    </a>
+                                </h1>
+                                <div class="post-meta">
+                                    <time class="post-time" datetime="{{ post.created }}"
+                                          content="{{ post.created|date:'Y-m-d' }}">
+                                        {{ post.created|date:'m-d' }}
+                                    </time>
+                                </div>
+                            </header>
+                        </article>
                     {% endif %}
-                    {% for i in left %}
-                        <a class="page-number" href="?page={{ i }}">{{ i }}</a>
-                    {% endfor %}
-                {% endif %}
+                {% endfor %}
+            </section>
+            {% if is_paginated %}
+                <nav class="pagination">
+                    {% if page_obj.has_previous %}
+                        <a class="extend prev" rel="prev" href="?page={{ page_obj.previous_page_number }}"><i
+                                class="fa fa-angle-left"></i></a>
+                    {% endif %}
+                    {% if first %}
+                        <span class="page-number" href="?page=1">1</span>
+                    {% endif %}
+                    {% if left %}
+                        {% if left_has_more %}
+                            <span class="space">…</span>
+                        {% endif %}
+                        {% for i in left %}
+                            <a class="page-number" href="?page={{ i }}">{{ i }}</a>
+                        {% endfor %}
+                    {% endif %}
                     <span class="page-number current">{{ page_obj.number }}</span>
-                {% if right %}
-                    {% for i in right %}
-                        <a class="page-number" href="?page={{ i }}">{{ i }}</a>
-                    {% endfor %}
-                    {% if right_has_more %}
-                        <span class="space">…</span>
+                    {% if right %}
+                        {% for i in right %}
+                            <a class="page-number" href="?page={{ i }}">{{ i }}</a>
+                        {% endfor %}
+                        {% if right_has_more %}
+                            <span class="space">…</span>
+                        {% endif %}
                     {% endif %}
-                {% endif %}
-                {% if last %}
-                    <a class="page-number" href="?page={{ paginator.num_pages }}">{{ paginator.num_pages }}</a>
-                {% endif %}
-                {% if page_obj.has_next %}
-                    <a class="extend next" rel="next" href="?page={{ page_obj.next_page_number }}"><i class="fa fa-angle-right"></i></a>
-                {% endif %}
+                    {% if last %}
+                        <a class="page-number" href="?page={{ paginator.num_pages }}">{{ paginator.num_pages }}</a>
+                    {% endif %}
+                    {% if page_obj.has_next %}
+                        <a class="extend next" rel="next" href="?page={{ page_obj.next_page_number }}"><i
+                                class="fa fa-angle-right"></i></a>
+                    {% endif %}
 
-            </nav>
-        {% endif %}
-          </div>
+                </nav>
+            {% endif %}
+        </div>
     </div>
 {% endblock %}

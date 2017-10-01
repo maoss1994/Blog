@@ -1,17 +1,15 @@
-{% load staticfiles %}
-{% load blog_tags %}
-<!DOCTYPE html>
+{% load staticfiles %}{% load blog_tags %}<!DOCTYPE html>
 <html class="theme-next pisces use-motion" lang="zh-Hans">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="google-site-verification" content="VvyjvVXcJQa0QklHipu6pwm2PJGnnchIqX7s5JbbT_0">
-    <link href="{% static 'fancybox/2.1.5/jquery.fancybox.min.css'%}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fancybox/2.1.5/jquery.fancybox.min.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'font-awesome/4.6.2/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'css/main.css' %}" rel="stylesheet" type="text/css">
     <meta name="keywords" content="Cluas">
-    <link rel="alternate" href="{% url 'blog:rss' %}" title="Cluas&#39;s Blog"type="application/atom+xml">
+    <link rel="alternate" href="{% url 'blog:rss' %}" title="Cluas&#39;s Blog" type="application/atom+xml">
     <link rel="shortcut icon" type="image/x-icon" href="http://notes.iissnan.com/favicon.ico?v=5.1.0">
     <meta name="description" content="Trust yourself！">
     <meta property="og:type" content="website">
@@ -22,9 +20,7 @@
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Cluas&#39;s Blog">
     <meta name="twitter:description" content="Trust yourself！">
-
-
-    <script type="text/javascript" >
+    <script type="text/javascript">
         var NexT = window.NexT || {};
         var CONFIG = {
             root: '/',
@@ -46,32 +42,24 @@
 
         };
     </script>
-
-
     <link rel="canonical" href="http://ww.cluas.me/">
-
-
     <title>Cluas&#39;s Blog</title>
     <style type="text/css">
         .fancybox-margin {
-        margin-right: 0px;
+            margin-right: 0px;
         }
+
         span.highlighted {
             color: red;
         }
-        .post-toc-content ul{
+
+        .post-toc-content ul {
             text-align: left;
         }
     </style>
     <script src="{% static 'js/count-data.js' %}"></script>
 </head>
-
 <body lang="zh-Hans">
-
-
-
-
-
 <div class="container sidebar-position-left page-home">
     <div class="headband"></div>
     <header id="header" class="header">
@@ -79,7 +67,7 @@
             <div class="site-brand-wrapper">
                 <div class="site-meta">
                     <div class="custom-logo-site-title">
-                        <a href="{% url 'blog:index' %}" class="brand" rel="start" style="opacity: 1;">
+                        <a href="{% url 'blog:index' %}" class="brand" rel="start">
                             <span class="logo-line-before"><i></i></span>
                             <span class="site-title" style="opacity: 1; top: 0px;">Cluas&#39;s Blog</span>
                             <span class="logo-line-after"><i></i></span>
@@ -119,7 +107,7 @@
                         </a>
                     </li>
                 </ul>
-{#                搜索 带添加#}
+                {#                搜索 带添加#}
                 <div class="site-search">
                     <div class="algolia-popup popup search-popup">
                         <div class="algolia-search">
@@ -128,10 +116,9 @@
                             </div>
                             <div class="algolia-search-input" id="algolia-search-input">
                                 <div class="ais-search-box">
-                                    <input autocapitalize="off" autocomplete="off"
-                                                                   autocorrect="off" placeholder="搜索" role="textbox"
-                                                                   spellcheck="false" type="text" value=""
-                                                                   class="ais-search-box--input"></div>
+                                    <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="搜索"
+                                           role="textbox" spellcheck="false" type="text" value=""
+                                           class="ais-search-box--input"></div>
                             </div>
                         </div>
                         <div class="algolia-results">
@@ -145,12 +132,11 @@
             </nav>
         </div>
     </header>
-
     <main id="main" class="main">
         <div class="main-inner">
             {% block main %}
             {% endblock %}
-<!--边栏-->
+            <!--边栏-->
             <div class="sidebar-toggle">
                 <div class="sidebar-toggle-line-wrap">
                     <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
@@ -158,84 +144,84 @@
                     <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
                 </div>
             </div>
-<aside id="sidebar" class="sidebar" style="margin-top: 306px; display: block;">
-    <div class="sidebar-inner {% if post.toc %}affix-top{% endif %}">
-        {% if post.toc %}
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-        {% endif %}
-        <section class="site-overview sidebar-panel {% if post.toc %} {% else %}sidebar-panel-active{% endif %}">
-            <div class="site-author motion-element">
-                <img class="site-author-image" src="{% static 'image/1.png' %}"
-                     alt="Cluas">
-                <p class="site-author-name" >Cluas</p>
-                <p class="site-description motion-element" >Trust yourself！</p>
-            </div>
-            <nav class="site-state motion-element">
-                <div class="site-state-item site-state-posts">
-                    <a href="{% url 'blog:archives' %}">
-                        <span class="site-state-item-count">{% get_post_quantity %}</span>
-                        <span class="site-state-item-name">日志</span>
-                    </a>
-                </div>
-                <div class="site-state-item site-state-categories">
-                    <a href="{% url 'blog:category_list' %}">
-                        <span class="site-state-item-count">{% get_categories as categories %}{{ categories.count }}</span>
-                        <span class="site-state-item-name">分类</span>
-                    </a>
-                </div>
-                <div class="site-state-item site-state-tags">
-                    <a href="{% url 'blog:post_tags' %}">
-                        <span class="site-state-item-count">{% get_tags as tags %}{{ tags.count }}</span>
-                        <span class="site-state-item-name">标签</span>
-                    </a>
-                </div>
-            </nav>
-            <div class="feed-link motion-element">
-                <a href="{% url 'blog:rss' %}" rel="alternate">
-                    <i class="fa fa-rss"></i>
-                    RSS
-                </a>
-            </div>
-            <div class="links-of-author motion-element">
+            <aside id="sidebar" class="sidebar" style="margin-top: 306px; display: block;">
+                <div class="sidebar-inner {% if post.toc %}affix-top{% endif %}">
+                    {% if post.toc %}
+                        <ul class="sidebar-nav motion-element">
+                            <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+                                文章目录
+                            </li>
+                            <li class="sidebar-nav-overview" data-target="site-overview">
+                                站点概览
+                            </li>
+                        </ul>
+                    {% endif %}
+                    <section
+                            class="site-overview sidebar-panel {% if post.toc %} {% else %}sidebar-panel-active{% endif %}">
+                        <div class="site-author motion-element">
+                            <img class="site-author-image" src="{% static 'image/1.png' %}" alt="Cluas">
+                            <p class="site-author-name">Cluas</p>
+                            <p class="site-description motion-element">Trust yourself！</p>
+                        </div>
+                        <nav class="site-state motion-element">
+                            <div class="site-state-item site-state-posts">
+                                <a href="{% url 'blog:archives' %}">
+                                    <span class="site-state-item-count">{% get_post_quantity %}</span>
+                                    <span class="site-state-item-name">日志</span>
+                                </a>
+                            </div>
+                            <div class="site-state-item site-state-categories">
+                                <a href="{% url 'blog:category_list' %}">
+                                    <span class="site-state-item-count">{% get_categories as categories %}{{ categories.count }}</span>
+                                    <span class="site-state-item-name">分类</span>
+                                </a>
+                            </div>
+                            <div class="site-state-item site-state-tags">
+                                <a href="{% url 'blog:post_tags' %}">
+                                    <span class="site-state-item-count">{% get_tags as tags %}{{ tags.count }}</span>
+                                    <span class="site-state-item-name">标签</span>
+                                </a>
+                            </div>
+                        </nav>
+                        <div class="feed-link motion-element">
+                            <a href="{% url 'blog:rss' %}" rel="alternate">
+                                <i class="fa fa-rss"></i>
+                                RSS
+                            </a>
+                        </div>
+                        <div class="links-of-author motion-element">
                 <span class="links-of-author-item">
                     <a href="https://github.com/Cluas" target="_blank" title="GitHub">
                         <i class="fa fa-fw fa-github"></i>
                         GitHub
                     </a>
                 </span>
-                <span class="links-of-author-item">
+                            <span class="links-of-author-item">
                     <a href="#" target="_blank" title="WeiXin">
                         <i class="fa fa-fw fa-weixin"></i>
                         微信
                     </a>
                 </span>
-                <span class="links-of-author-item">
+                            <span class="links-of-author-item">
                     <a href="https://weibo.com/172074443/" target="_blank" title="微博">
                         <i class="fa fa-fw fa-weibo"></i>
                         微博
                     </a>
                 </span>
-                <span class="links-of-author-item">
+                            <span class="links-of-author-item">
                     <a href="https://www.zhihu.com/people/cluas/" target="_blank" title="知乎">
                         <i class="fa fa-fw fa-heart"></i>
                         知乎
                     </a>
                 </span>
-            </div>
-        </section>
-        {% block toc %}
-        {% endblock %}
-        {% block section %}
-        {% endblock %}
-    </div>
-</aside>
+                        </div>
+                    </section>
+                    {% block toc %}
+                    {% endblock %}
+                    {% block section %}
+                    {% endblock %}
+                </div>
+            </aside>
         </div>
     </main>
 
@@ -243,11 +229,11 @@
         <div class="footer-inner">
             <div class="copyright">
                 © 2011 -
-                <span >2017</span>
+                <span>2017</span>
                 <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-                <span class="author" >Cluas</span>
+                <span class="author">Cluas</span>
             </div>
 
             <div class="powered-by">

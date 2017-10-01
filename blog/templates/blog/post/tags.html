@@ -1,31 +1,21 @@
-{% extends 'base.html' %}
-{% load blog_tags %}
+{% extends 'base.html' %}{% load blog_tags %}
 {% block main %}
     <div class="content-wrap">
-          <div id="content" class="content">
-
-
-  <div id="posts" class="posts-expand">
-
-
-      <div class="tag-cloud">
-        <div class="tag-cloud-title">
-            {% get_tags as tags %}
-            目前共计 {{ tags.count }}个标签
+        <div id="content" class="content">
+            <div id="posts" class="posts-expand">
+                <div class="tag-cloud">
+                    <div class="tag-cloud-title">
+                        {% get_tags as tags %}
+                        目前共计 {{ tags.count }}个标签
+                    </div>
+                    <div class="tag-cloud-tags">
+                        {% for tag in tags %}
+                            <a href="{% url 'blog:tag_detail' tag.name %}"
+                               style="font-size: {{ tag.post_set.count|add:'12' }}px; color:rgba(0,0,0,0.{% widthratio tag.post_set.count 0.05 1 %})">{{ tag.name }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="tag-cloud-tags">
-            {% for tag in tags %}
-                <a href="{% url 'blog:tag_detail' tag.name %}"
-                   style="font-size: {{ tag.post_set.count|add:'12' }}px; color:rgba(0,0,0,0.{% widthratio tag.post_set.count 0.05 1%})">{{ tag.name }}</a>
-            {% endfor %}
-        </div>
-      </div>
-
-  </div>
-
-          </div>
-
-  </div>
-
-
+    </div>
 {% endblock %}
