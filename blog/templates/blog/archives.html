@@ -3,8 +3,6 @@
     {% load blog_tags %}
     <div class="content-wrap">
           <div id="content" class="content">
-
-
   <section id="posts" class="posts-collapse">
     <span class="archive-move-on"></span>
 
@@ -22,23 +20,16 @@
   <article class="post post-type-normal"
            style="opacity: 1; display: block; transform: translateY(0px);">
     <header class="post-header">
-
       <h1 class="post-title">
-
             <a class="post-title-link" href="{{ post.get_absolute_url }}">
-
                 <span>{{ post.title }}</span>
-
             </a>
-
       </h1>
-
       <div class="post-meta">
         <time class="post-time" datetime="{{ post.created }}" content="{{ post.created|date:'Y-m-d' }}">
             {{ post.created|date:'m-d' }}
         </time>
       </div>
-
     </header>
   </article>
         {% endif %}
