@@ -9,6 +9,9 @@ from django.core.urlresolvers import reverse
 class Tag(models.Model):
     name = models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.name
+
 
 class PublishedManage(models.Manager):
     """创建发布日期管理器"""
@@ -57,10 +60,11 @@ class Post(models.Model):
         self.save(update_fields=['views'])
 
     def get_absolute_url(self):
-        return reverse('blog:post_detail', args=[self.publish.year,
-                                                 self.publish.strftime('%m'),
-                                                 self.publish.strftime('%d'),
-                                                 self.id])
+        # return reverse('blog:post_detail', args=[self.publish.year,
+        #                                          self.publish.strftime('%m'),
+        #                                          self.publish.strftime('%d'),
+        #                                          self.id])
+        return reverse('blog:post_detail', args=[self.pk])
 
     def save(self, *args, **kwargs):
         if not self.summary:
@@ -68,5 +72,5 @@ class Post(models.Model):
                 'markdown.extensions.extra',
                 'markdown.extensions.codehilite',
             ])
-            self.summary = strip_tags(md.convert(self.body))[:54]
+            self.summary = strip_tags(md.convert(self.body))[:100]
         super(Post, self).save(*args, **kwargs)
