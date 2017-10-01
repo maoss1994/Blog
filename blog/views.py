@@ -74,10 +74,11 @@ class IndexView(ListView):
         return data
 
 
-class ArchivesView(ListView):
+class ArchivesView(IndexView):
     model = Post
     template_name = 'blog/archives.html'
     context_object_name = 'posts'
+    paginate_by = 6
 
 
 class PostDetailView(DetailView):
@@ -99,7 +100,8 @@ class PostDetailView(DetailView):
                                           TocExtension(slugify=slugify)
                                       ])
         post.body = md.convert(post.body)
-        post.toc = md.toc
+        if len(md.toc) > 35:
+            post.toc = md.toc
         return post
 
     def get_context_data(self, **kwargs):
@@ -146,12 +148,7 @@ def post_detail(request, year, month, day, id):
 #                                 created__month=month)
 #     return render(request, 'blog/post/index.html', {'posts': posts})
 
-class ArchivesViews(IndexView):
-    def get_queryset(self):
-        return super(ArchivesViews,self).get_queryset().filter(
-            created__year=self.kwargs.get('year'),
-            created__month=self.kwargs.get('month')
-        )
+
 
 
 def category_list(request):

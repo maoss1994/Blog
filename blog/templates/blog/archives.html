@@ -44,13 +44,40 @@
         {% endif %}
       {% endfor %}
   </section>
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number"
-                                                 href="http://notes.iissnan.com/archives/page/2/">2</a><span
-          class="space">…</span><a class="page-number" href="http://notes.iissnan.com/archives/page/10/">10</a><a
-          class="extend next" rel="next" href="http://notes.iissnan.com/archives/page/2/"><i
-          class="fa fa-angle-right"></i></a>
-  </nav>
+          {% if is_paginated %}
+            <nav class="pagination">
+                {% if page_obj.has_previous %}
+                <a class="extend prev" rel="prev" href="?page={{page_obj.previous_page_number }}"><i class="fa fa-angle-left"></i></a>
+                {% endif %}
+                {% if first  %}
+                    <span class="page-number" href="?page=1">1</span>
+                {% endif %}
+                {% if left %}
+                    {% if left_has_more %}
+                        <span class="space">…</span>
+                    {% endif %}
+                    {% for i in left %}
+                        <a class="page-number" href="?page={{ i }}">{{ i }}</a>
+                    {% endfor %}
+                {% endif %}
+                    <span class="page-number current">{{ page_obj.number }}</span>
+                {% if right %}
+                    {% for i in right %}
+                        <a class="page-number" href="?page={{ i }}">{{ i }}</a>
+                    {% endfor %}
+                    {% if right_has_more %}
+                        <span class="space">…</span>
+                    {% endif %}
+                {% endif %}
+                {% if last %}
+                    <a class="page-number" href="?page={{ paginator.num_pages }}">{{ paginator.num_pages }}</a>
+                {% endif %}
+                {% if page_obj.has_next %}
+                    <a class="extend next" rel="next" href="?page={{ page_obj.next_page_number }}"><i class="fa fa-angle-right"></i></a>
+                {% endif %}
+
+            </nav>
+        {% endif %}
           </div>
     </div>
 {% endblock %}

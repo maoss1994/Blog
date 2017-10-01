@@ -59,6 +59,9 @@
         span.highlighted {
             color: red;
         }
+        .post-toc-content ul{
+            text-align: left;
+        }
     </style>
     <script src="{% static 'js/count-data.js' %}"></script>
 </head>
@@ -156,8 +159,8 @@
                 </div>
             </div>
 <aside id="sidebar" class="sidebar" style="margin-top: 306px; display: block;">
-    <div class="sidebar-inner {% if post %}affix-top{% endif %}">
-        {% if post %}
+    <div class="sidebar-inner {% if post.toc %}affix-top{% endif %}">
+        {% if post.toc %}
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
@@ -167,7 +170,7 @@
           </li>
         </ul>
         {% endif %}
-        <section class="site-overview sidebar-panel {% if post %} {% else %}sidebar-panel-active{% endif %}">
+        <section class="site-overview sidebar-panel {% if post.toc %} {% else %}sidebar-panel-active{% endif %}">
             <div class="site-author motion-element">
                 <img class="site-author-image" src="{% static 'image/1.png' %}"
                      alt="Cluas">
@@ -176,7 +179,7 @@
             </div>
             <nav class="site-state motion-element">
                 <div class="site-state-item site-state-posts">
-                    <a href="http://notes.iissnan.com/archives">
+                    <a href="{% url 'blog:archives' %}">
                         <span class="site-state-item-count">{% get_post_quantity %}</span>
                         <span class="site-state-item-name">日志</span>
                     </a>
