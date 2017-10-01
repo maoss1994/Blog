@@ -4,7 +4,7 @@
         <div id="content" class="content">
             <div id="posts" class="posts-expand">
 
-                <article class="post post-type-normal" style="opacity: 1; display: block; transform: translateY(0px);">
+                <article class="post post-type-normal">
                     <header class="post-header">
                         <h1 class="post-title">
                             <a class="post-title-link" href="{{ post.get_absolute_url }}">
@@ -31,9 +31,9 @@
                                     <span class="post-meta-item-icon">
                                       <i class="fa fa-comment-o"></i>
                                     </span>
-                                    <a href="http://notes.iissnan.com/2016/publishing-github-pages-with-travis-ci/#comments">
+                                    <a href="{{ post.get_absolute_url }}#comments">
                                       <span class="post-comments-count disqus-comment-count"
-                                            data-disqus-identifier="2016/publishing-github-pages-with-travis-ci/">{{ post.comments.count }} Comments</span>
+                                            >{{ post.comments.count }} Comments</span>
                                     </a>
                                   </span>
                             <span id="/2016/publishing-github-pages-with-travis-ci/" class="leancloud_visitors"
@@ -77,66 +77,51 @@
                             </li>
                             <li class="post-copyright-link">
                                 <strong>本文链接：</strong>
-                                <a href="{{ post.get_absolute_url }}" title="使用 Travis CI 自动更新 GitHub Pages">www.cluas.me{{ post.get_absolute_url }}</a>
+                                <a href="{{ post.get_absolute_url }}" title="{{ post.title }}">www.cluas.me{{ post.get_absolute_url }}</a>
                             </li>
                             <li class="post-copyright-license">
                                 <strong>版权声明： </strong>
-                                本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/"
-                                                     rel="external nofollow" target="_blank">CC BY-NC-SA 3.0 CN</a>
+                                本博客所有文章除特别声明外，均采用
+                                <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" rel="external nofollow" target="_blank">
+                                    CC BY-NC-SA 3.0 CN</a>
                                 许可协议。转载请注明出处！
                             </li>
                         </ul>
-
-
                     </div>
-
                     <footer class="post-footer">
 
                         <div class="post-tags">
 
-                            <a href="http://notes.iissnan.com/tags/github/" rel="tag"># GitHub</a>
-
-                            <a href="http://notes.iissnan.com/tags/next/" rel="tag"># NexT</a>
-
-                            <a href="http://notes.iissnan.com/tags/travis-ci/" rel="tag"># Travis CI</a>
-
+                            {% for tag in post.tags.all %}
+                            <a href="{% url 'blog:tag_detail' tag.name %}" rel="tag"># {{ tag.name }}</a>
+                            {% endfor %}
                         </div>
-
-
                         <div class="post-nav">
+
                             <div class="post-nav-next post-nav-item">
-
-                                <a href="http://notes.iissnan.com/2016/next-documentations-reload/" rel="next"
-                                   title="NexT Documentations Reload">
-                                    <i class="fa fa-chevron-left"></i> NexT Documentations Reload
-                                </a>
-
+                                {% if post.get_previous_by_created %}
+                                <a href="{{ post.get_previous_by_created.get_absolute_url }}" rel="next"
+                                   title="{{ post.get_previous_by_created.title }}"><i class="fa fa-chevron-left"></i>
+                                    {{ post.get_previous_by_created.title|truncatechars:'15'}}</a>
+                                {% endif %}
                             </div>
-
                             <span class="post-nav-divider"></span>
-
                             <div class="post-nav-prev post-nav-item">
-                                <a href="http://notes.iissnan.com/2016/next-documentations-reload/" rel="next"
-                                   title="NexT Documentations Reload">
-                                    <i class="fa fa-chevron-right"></i> NexT Documentations Reload
+                                {% if post.get_next_by_created %}
+                                <a href="{{ post.get_next_by_created.get_absolute_url }}" rel="next"
+                                   title="{{ post.get_next_by_created.title }}">
+                                    {{ post.get_next_by_created.title }}
+                                    <i class="fa fa-chevron-right"></i>
                                 </a>
+                                {% endif %}
                             </div>
                         </div>
-
-
                     </footer>
                 </article>
-
-
                 <div class="post-spread">
-
                 </div>
             </div>
-
-
         </div>
-
-
         <div class="comments" id="comments">
 
             {#      <div id="disqus_thread"><iframe id="dsq-app3142" name="dsq-app3142" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" title="Disqus" width="100%" src="./使用 Travis CI 自动更新 GitHub Pages _ IIssNan&#39;s Notes_files/saved_resource.html" style="width: 1px !important; min-width: 100% !important; border: none !important; overflow: hidden !important; height: 1540px !important;" horizontalscrolling="no" verticalscrolling="no"></iframe><iframe id="indicator-north" name="indicator-north" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" title="Disqus" style="width: 580px !important; border: none !important; overflow: hidden !important; top: 0px !important; min-width: 580px !important; max-width: 580px !important; position: fixed !important; z-index: 2147483646 !important; height: 22px !important; min-height: 22px !important; max-height: 22px !important; display: none !important;" src="./使用 Travis CI 自动更新 GitHub Pages _ IIssNan&#39;s Notes_files/saved_resource(2).html"></iframe><iframe id="indicator-south" name="indicator-south" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" title="Disqus" style="width: 580px !important; border: none !important; overflow: hidden !important; bottom: 0px !important; min-width: 580px !important; max-width: 580px !important; position: fixed !important; z-index: 2147483646 !important; height: 22px !important; min-height: 22px !important; max-height: 22px !important; display: none !important;" src="./使用 Travis CI 自动更新 GitHub Pages _ IIssNan&#39;s Notes_files/saved_resource(3).html"></iframe></div>#}
