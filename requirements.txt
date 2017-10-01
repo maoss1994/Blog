@@ -1,3 +1,5 @@
+jieba
+django-haystack
 Django==1.11.5
 Markdown==2.6.9
 Pygments==2.2.0
