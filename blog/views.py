@@ -173,7 +173,6 @@ class TagDetailView(IndexView):
 
     def get_queryset(self):
         tags = get_object_or_404(Tag, name=self.kwargs.get('name'))
-        print(super(TagDetailView, self).get_queryset().filter(tags=tags))
         return super(TagDetailView, self).get_queryset().filter(tags=tags)
 
     def get_context_data(self, **kwargs):
