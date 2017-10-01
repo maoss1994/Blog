@@ -1,86 +1,160 @@
 {% extends 'base.html' %}
-
 {% block main %}
-    <article class="post post-{{ post.id }}">
-        <header class="entry-header">
-            <h1 class="entry-title">{{ post.title }}</h1>
-            <div class="entry-meta">
-                <span class="post-category"><a href="#">{{ post.category.name }}</a></span>
-                <span class="post-date"><a href="#"><time class="entry-date"
-                                                          datetime="{{ post.created }}">{{ post.created }}</time></a></span>
-                <span class="post-author"><a href="#">{{ post.author }}</a></span>
-                <span class="comments-link"><a href="#">{{ post.comments.count }} 评论</a></span>
-                <span class="views-count"><a href="#">{{ post.views }} 阅读</a></span>
-            </div>
-        </header>
-        <div class="entry-content clearfix">
-            {{ post.body }}
-        </div>
-    </article>
-    <section class="comment-area">
-        <form action="{% url 'comments:post_comment' post.pk %}" method="post" class="comment-form">
-            {% csrf_token %}
-            <div class="row">
-                <div class="col-md-4">
-                    <label for="{{ form.name.id_for_label }}">名字：</label>
-                    {{ form.name }}
-                    {{ form.name.errors }}
-                </div>
-                <div class="col-md-4">
-                    <label for="{{ form.email.id_for_label }}">邮箱：</label>
-                    {{ form.email }}
-                    {{ form.email.errors }}
-                </div>
-                <div class="col-md-4">
-                    <label for="{{ form.url.id_for_label }}">URL：</label>
-                    {{ form.url }}
-                    {{ form.url.errors }}
-                </div>
-                <div class="col-md-12">
-                    <label for="{{ form.text.id_for_label }}">评论：</label>
-                    {{ form.content }}
-                    {{ form.contenterrors }}
-                    <button type="submit" class="comment-btn">发表</button>
-                </div>
-            </div>    <!-- row -->
-        </form>
-        <div class="comment-list-panel">
-            <h3>评论列表，共 <span>{{ post.comments.count }}</span> 条评论</h3>
-            <ul class="comment-list list-unstyled">
-                {% for comment in comments %}
-                <li class="comment-item">
-                    <span class="nickname">{{ comment.name }}</span>
-                    <time class="submit-date" datetime="{{ comment.created }}">{{ comment.created }}</time>
-                    <div class="text">
-                        {{ comment.content }}
+    <div class="content-wrap">
+        <div id="content" class="content">
+            <div id="posts" class="posts-expand">
+
+                <article class="post post-type-normal" style="opacity: 1; display: block; transform: translateY(0px);">
+                    <header class="post-header">
+                        <h1 class="post-title">
+                            <a class="post-title-link" href="{{ post.get_absolute_url }}">
+                                {{ post.title }}
+                            </a>
+                        </h1>
+                        <div class="post-meta">
+                              <span class="post-time">
+                              <span class="post-meta-item-icon">
+                                <i class="fa fa-calendar-o"></i>
+                              </span>
+                              <span class="post-meta-item-text">发表于</span>
+                              <time title="创建于" datetime="{{ post.created }}">
+                                {{ post.created }}
+                              </time>
+                                </span>
+                            <span class="post-category"><span class="post-meta-divider">|</span>
+                                    <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i></span>
+                                    <span class="post-meta-item-text">分类于</span>
+                                    <span><a href="#" rel="index"><span>{{ post.category.name }}</span></a></span>
+                                </span>
+                            <span class="post-comments-count">
+                                    <span class="post-meta-divider">|</span>
+                                    <span class="post-meta-item-icon">
+                                      <i class="fa fa-comment-o"></i>
+                                    </span>
+                                    <a href="http://notes.iissnan.com/2016/publishing-github-pages-with-travis-ci/#comments">
+                                      <span class="post-comments-count disqus-comment-count"
+                                            data-disqus-identifier="2016/publishing-github-pages-with-travis-ci/">{{ post.comments.count }} Comments</span>
+                                    </a>
+                                  </span>
+                            <span id="/2016/publishing-github-pages-with-travis-ci/" class="leancloud_visitors"
+                                  data-flag-title="{{ post.title }}">
+                                   <span class="post-meta-divider">|</span>
+                                   <span class="post-meta-item-icon">
+                                     <i class="fa fa-eye"></i>
+                                   </span>
+
+                                     <span class="post-meta-item-text">阅读次数 </span>
+
+                                     <span class="leancloud-visitors-count">{{ post.views }}</span>
+                                 </span>
+                        </div>
+                    </header>
+
+
+                    <div class="post-body" itemprop="articleBody">
+
+                        {{ post.body|safe }}
+
                     </div>
-                </li>
-                {% empty %}
-                暂无评论！
-                {% endfor %}
-            </ul>
+
+                    <div>
+
+
+                    </div>
+
+                    <div>
+
+
+                    </div>
+
+                    <div>
+
+
+                        <ul class="post-copyright">
+                            <li class="post-copyright-author">
+                                <strong>本文作者：</strong>
+                                {{ post.author }}
+                            </li>
+                            <li class="post-copyright-link">
+                                <strong>本文链接：</strong>
+                                <a href="{{ post.get_absolute_url }}" title="使用 Travis CI 自动更新 GitHub Pages">www.cluas.me{{ post.get_absolute_url }}</a>
+                            </li>
+                            <li class="post-copyright-license">
+                                <strong>版权声明： </strong>
+                                本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/"
+                                                     rel="external nofollow" target="_blank">CC BY-NC-SA 3.0 CN</a>
+                                许可协议。转载请注明出处！
+                            </li>
+                        </ul>
+
+
+                    </div>
+
+                    <footer class="post-footer">
+
+                        <div class="post-tags">
+
+                            <a href="http://notes.iissnan.com/tags/github/" rel="tag"># GitHub</a>
+
+                            <a href="http://notes.iissnan.com/tags/next/" rel="tag"># NexT</a>
+
+                            <a href="http://notes.iissnan.com/tags/travis-ci/" rel="tag"># Travis CI</a>
+
+                        </div>
+
+
+                        <div class="post-nav">
+                            <div class="post-nav-next post-nav-item">
+
+                                <a href="http://notes.iissnan.com/2016/next-documentations-reload/" rel="next"
+                                   title="NexT Documentations Reload">
+                                    <i class="fa fa-chevron-left"></i> NexT Documentations Reload
+                                </a>
+
+                            </div>
+
+                            <span class="post-nav-divider"></span>
+
+                            <div class="post-nav-prev post-nav-item">
+                                <a href="http://notes.iissnan.com/2016/next-documentations-reload/" rel="next"
+                                   title="NexT Documentations Reload">
+                                    <i class="fa fa-chevron-right"></i> NexT Documentations Reload
+                                </a>
+                            </div>
+                        </div>
+
+
+                    </footer>
+                </article>
+
+
+                <div class="post-spread">
+
+                </div>
+            </div>
+
+
+        </div>
+
+
+        <div class="comments" id="comments">
+
+            {#      <div id="disqus_thread"><iframe id="dsq-app3142" name="dsq-app3142" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" title="Disqus" width="100%" src="./使用 Travis CI 自动更新 GitHub Pages _ IIssNan&#39;s Notes_files/saved_resource.html" style="width: 1px !important; min-width: 100% !important; border: none !important; overflow: hidden !important; height: 1540px !important;" horizontalscrolling="no" verticalscrolling="no"></iframe><iframe id="indicator-north" name="indicator-north" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" title="Disqus" style="width: 580px !important; border: none !important; overflow: hidden !important; top: 0px !important; min-width: 580px !important; max-width: 580px !important; position: fixed !important; z-index: 2147483646 !important; height: 22px !important; min-height: 22px !important; max-height: 22px !important; display: none !important;" src="./使用 Travis CI 自动更新 GitHub Pages _ IIssNan&#39;s Notes_files/saved_resource(2).html"></iframe><iframe id="indicator-south" name="indicator-south" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" title="Disqus" style="width: 580px !important; border: none !important; overflow: hidden !important; bottom: 0px !important; min-width: 580px !important; max-width: 580px !important; position: fixed !important; z-index: 2147483646 !important; height: 22px !important; min-height: 22px !important; max-height: 22px !important; display: none !important;" src="./使用 Travis CI 自动更新 GitHub Pages _ IIssNan&#39;s Notes_files/saved_resource(3).html"></iframe></div>#}
+
+        </div>
+
+
+    </div>
+{% endblock %}
+{% block toc %}
+    <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+        <div class="post-toc" style="max-height: 584px; width: calc(100% + 0px);">
+            <div class="post-toc-content">
+                {{ post.toc|safe }}
+            </div>
         </div>
     </section>
-{% endblock main %}
-{% block toc %}
-    <div class="widget widget-content">
-        <h3 class="widget-title">文章目录</h3>
-        <ul>
-            <li>
-                <a href="#">教程特点</a>
-            </li>
-            <li>
-                <a href="#">谁适合这个教程</a>
-            </li>
-            <li>
-                <a href="#">在线预览</a>
-            </li>
-            <li>
-                <a href="#">资源列表</a>
-            </li>
-            <li>
-                <a href="#">获取帮助</a>
-            </li>
-        </ul>
-    </div>
-{% endblock toc %}
+{% endblock %}
+
+
+

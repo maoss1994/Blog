@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load blog_tags %}
+{% block main %}
+       <div class="content-wrap">
+          <div id="content" class="content">
+
+
+  <div id="posts" class="posts-expand">
+
+
+      <div class="category-all-page">
+        <div class="category-all-title">
+            目前共计 {% get_categories as categories %}{{ categories.count }} 个分类
+        </div>
+        <div class="category-all">
+          <ul class="category-list">
+              {% for category in categories %}
+              <li class="category-list-item">
+                  <a class="category-list-link" href="{% url 'blog:category_detail' category.name %}">{{ category.name }}</a>
+                  <span class="category-list-count">{{ category.post_category.count }}</span>
+              </li>
+              {% endfor %}
+          </ul>
+        </div>
+      </div>
+  </div>
+          </div>
+       </div>
+
+
+
+
+
+
+
+{% endblock %}
