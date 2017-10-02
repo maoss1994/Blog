@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '(6wc_zllww9rp5q=rfiqht_t7c4wx8ezmil4+uj$v#q+301y8)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost ', '.cluas.me']
 
@@ -139,5 +139,5 @@ ALGOLIA = {
     'API_KEY': 'a026aa0884cbf3299dd5f863e5116904',
     'SEARCH_API_KEY': '7689900753216d5c132146332e5130ec',
     'INDEX_PREFIX': "blog",
-    'INDEX_SUFFIX': 'dev'
+    'INDEX_SUFFIX': 'prod'
 }
