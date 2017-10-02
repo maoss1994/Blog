@@ -29,8 +29,8 @@ class Category(models.Model):
 
 class Post(models.Model):
     """文章模型"""
-    STATUS_CHOICES = (('草稿', '草稿'),
-                      ('发布', '发布'))
+    STATUS_CHOICES = (('1', '草稿'),
+                      ('2', '发布'))
     category = models.ForeignKey(Category, related_name='post_category')
     title = models.CharField(u'标题', max_length=150)
     body = models.TextField()
