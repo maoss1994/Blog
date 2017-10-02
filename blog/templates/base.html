@@ -39,14 +39,18 @@
                 userId: '0',
                 author: '博主'
             },
-        {% algolia as algolia %}
+            {% algolia as algolia %}
             algolia: {
-            applicationID: '{{ algolia.appID }}',
-            apiKey: '{{algolia.searchKey}}',
-            indexName: '{{algolia.indexName }}',
-            hits: {"per_page":7},
-            labels: {"input_placeholder":"搜索","hits_empty":"未发现与 「${query}」相关的内容","hits_stats":"${hits} 条相关条目，使用了 ${time} 毫秒"}
-    }
+                applicationID: '{{ algolia.appID }}',
+                apiKey: '{{algolia.searchKey}}',
+                indexName: '{{algolia.indexName }}',
+                hits: {"per_page": 7},
+                labels: {
+                    "input_placeholder": "搜索",
+                    "hits_empty": "未发现与 「${query}」相关的内容",
+                    "hits_stats": "${hits} 条相关条目，使用了 ${time} 毫秒"
+                }
+            }
         };
     </script>
     <link rel="canonical" href="http://ww.cluas.me/">
