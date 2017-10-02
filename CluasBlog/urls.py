@@ -19,7 +19,7 @@ from django.contrib.sitemaps.views import sitemap
 from blog.sitemaps import PostSitemap
 from django.conf import settings
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from blog.views import IndexView
+from django.views.generic.base import RedirectView
 
 sitemaps = {
     'posts': PostSitemap,
@@ -27,7 +27,7 @@ sitemaps = {
 
 
 urlpatterns = [
-    url(r'^$', IndexView.as_view),
+    url(r'^$', RedirectView.as_view(url='blog')),
     url(r'^admin/', admin.site.urls),
     url(r'^blog/', include('blog.urls', namespace='blog')),
     url(r'', include('comments.urls', namespace='comments')),
