@@ -39,7 +39,14 @@
                 userId: '0',
                 author: '博主'
             },
-
+        {% algolia as algolia %}
+            algolia: {
+            applicationID: '{{ algolia.appID }}',
+            apiKey: '{{algolia.searchKey}}',
+            indexName: '{{algolia.indexName }}',
+            hits: {"per_page":7},
+            labels: {"input_placeholder":"搜索","hits_empty":"未发现与 「${query}」相关的内容","hits_stats":"${hits} 条相关条目，使用了 ${time} 毫秒"}
+    }
         };
     </script>
     <link rel="canonical" href="http://ww.cluas.me/">
@@ -115,10 +122,7 @@
                                 <i class="fa fa-search"></i>
                             </div>
                             <div class="algolia-search-input" id="algolia-search-input">
-                                <div class="ais-search-box">
-                                    <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="搜索"
-                                           role="textbox" spellcheck="false" type="text" value=""
-                                           class="ais-search-box--input"></div>
+
                             </div>
                         </div>
                         <div class="algolia-results">
@@ -271,5 +275,10 @@
 <script type="text/javascript" src="{% static 'js/src/scrollspy.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/src/post-details.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/src/bootstrap.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/src/algolia-search.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/src/post-details.js' %}"></script>
+<script type="text/javascript" src="{% static 'static/js/av-core-mini-0.6.1.js' %}"></script>
+<link rel="stylesheet" href="{% static 'lib/algolia-instant-search/instantsearch.min.css' %}">
+<script type="text/javascript" src="{% static 'lib/algolia-instant-search/instantsearch.min.js' %}"></script>
 </body>
 </html>

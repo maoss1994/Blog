@@ -1,6 +1,8 @@
 from django import template
 from ..models import Post, Category, Tag
 from django.db.models.aggregates import Count
+from django.conf import settings
+from algoliasearch_django import get_adapter
 
 
 register = template.Library()
@@ -29,3 +31,13 @@ def get_categories():
 @register.simple_tag
 def get_tags():
     return Tag.objects.annotate(num_posts=Count('post')).filter(num_posts__gt=0)
+
+
+@register.simple_tag
+def algolia():
+    context = {
+        'appID': settings.ALGOLIA['APPLICATION_ID'],
+        'searchKey': settings.ALGOLIA['SEARCH_API_KEY'],
+        'indexName': get_adapter(Post).index_name
+    }
+    return context

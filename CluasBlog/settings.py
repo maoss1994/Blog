@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'comments',
     'django.contrib.sites',
     'django.contrib.sitemaps',
+    'algoliasearch_django',
 ]
 
 MIDDLEWARE = [
@@ -129,6 +130,9 @@ STATICFILES_ROOT = (
     os.path.join(BASE_DIR, 'static'),
 )
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
 # haystack
 HAYSTACK_CONNECTIONS = {
     'default': {
@@ -138,3 +142,12 @@ HAYSTACK_CONNECTIONS = {
 }
 HAYSTACK_SEARCH_RESULTS_PER_PAGE = 10
 HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
+
+#algolia
+ALGOLIA = {
+    'APPLICATION_ID': '4PHUVNZHV7',
+    'API_KEY': 'a026aa0884cbf3299dd5f863e5116904',
+    'SEARCH_API_KEY': '7689900753216d5c132146332e5130ec',
+    'INDEX_PREFIX': "blog",
+    'INDEX_SUFFIX': 'dev'
+}
