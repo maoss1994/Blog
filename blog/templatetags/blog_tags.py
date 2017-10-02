@@ -17,8 +17,8 @@ def archives():
 
 
 @register.simple_tag
-def get_post_quantity():
-    return Post.objects.count()
+def total_posts():
+    return Post.published.count()
 
 
 @register.simple_tag
