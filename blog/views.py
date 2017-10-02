@@ -28,7 +28,7 @@ class IndexView(ListView):
         return context
 
     def get_queryset(self):
-        posts = super(IndexView,self).get_queryset().filter(status='发布')
+        posts = super(IndexView,self).get_queryset().filter(status='2')
         return posts
 
     @staticmethod
@@ -91,7 +91,6 @@ class ArchivesView(IndexView):
             'status': 'archives'
         })
         return context
-
 
 
 class PostDetailView(DetailView):
@@ -162,8 +161,6 @@ def post_detail(request, year, month, day, id):
 #     return render(request, 'blog/post/index.html', {'posts': posts})
 
 
-
-
 def category_list(request):
     return render(request, 'blog/post/category.html')
 
@@ -178,7 +175,7 @@ class CategoryDetailView(IndexView):
 
 
 def post_tags(request):
-    return render(request, 'blog/post/tags.html',{'status': 'tags'})
+    return render(request, 'blog/post/tags.html', {'status': 'tags'})
 
 
 class TagDetailView(IndexView):

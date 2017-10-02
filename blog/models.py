@@ -17,7 +17,7 @@ class PublishedManage(models.Manager):
     """创建发布日期管理器"""
     def get_queryset(self):
         return super(PublishedManage,
-                     self).get_queryset().filter(status='发布')
+                     self).get_queryset().filter(status='2')
 
 
 class Category(models.Model):
