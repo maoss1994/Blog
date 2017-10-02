@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'haystack',
     'blog',
     'comments',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
 ]
 
 MIDDLEWARE = [
