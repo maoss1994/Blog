@@ -96,18 +96,18 @@
             </div>
             <nav class="site-nav">
                 <ul id="menu" class="menu">
-                    <li class="menu-item menu-item-home menu-item-active"
+                    <li class="menu-item menu-item-home {% if not status%}menu-item-active{% endif %}"
                         style="opacity: 1; transform: translateY(0px);">
                         <a href="{% url 'blog:index' %}" rel="section">
                             <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页
                         </a>
                     </li>
-                    <li class="menu-item menu-item-archives" style="opacity: 1; transform: translateY(0px);">
+                    <li class="menu-item menu-item-archives {% if status == 'archives' %}menu-item-active{% endif %}" style="opacity: 1; transform: translateY(0px);">
                         <a href="{% url 'blog:archives' %}" rel="section">
                             <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档
                         </a>
                     </li>
-                    <li class="menu-item menu-item-tags" style="opacity: 1; transform: translateY(0px);">
+                    <li class="menu-item menu-item-tags {% if status == 'tags' %}menu-item-active{% endif %}" style="opacity: 1; transform: translateY(0px);">
                         <a href="{% url 'blog:post_tags' %}" rel="section">
                             <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签
                         </a>

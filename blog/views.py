@@ -85,6 +85,14 @@ class ArchivesView(IndexView):
     context_object_name = 'posts'
     paginate_by = 6
 
+    def get_context_data(self, **kwargs):
+        context = super(IndexView,self).get_context_data(**kwargs)
+        context.update({
+            'status': 'archives'
+        })
+        return context
+
+
 
 class PostDetailView(DetailView):
     model = Post
@@ -170,7 +178,7 @@ class CategoryDetailView(IndexView):
 
 
 def post_tags(request):
-    return render(request, 'blog/post/tags.html')
+    return render(request, 'blog/post/tags.html',{'status': 'tags'})
 
 
 class TagDetailView(IndexView):
@@ -181,10 +189,11 @@ class TagDetailView(IndexView):
         return super(TagDetailView, self).get_queryset().filter(tags=tags)
 
     def get_context_data(self, **kwargs):
-        context = super(IndexView, self).get_context_data(**kwargs)
+        context = super(TagDetailView, self).get_context_data(**kwargs)
         tag = get_object_or_404(Tag, name=self.kwargs['name'])
         context.update({
             'tag': tag,
+
         })
         return context
 # def category(request, name):
