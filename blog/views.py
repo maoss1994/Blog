@@ -18,6 +18,7 @@ class IndexView(ListView):
         context = super(IndexView,self).get_context_data(**kwargs)  # 获取当前context内容
         paginator = context.get('paginator')
         page = context.get('page_obj')
+
         is_paginated = context.get('is_paginated')
 
         pagination_data = self.pagination_data(paginator, page, is_paginated)  # 自己写一个方法
@@ -25,6 +26,10 @@ class IndexView(ListView):
         context.update(pagination_data)
 
         return context
+
+    def get_queryset(self):
+        posts = super(IndexView,self).get_queryset().filter(status='发布')
+        return posts
 
     @staticmethod
     def pagination_data(paginator, page, is_paginated):
