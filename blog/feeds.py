@@ -1,14 +1,15 @@
 from django.contrib.syndication.views import Feed
 from .models import Post
+from django.template.defaultfilters import truncatechars
 
 
-class AllPostsRssFeed(Feed):
-    title = "Cluas's Blog Posts"
+class LatestPostsRssFeed(Feed):
+    title = "Cluas's Blog "
     link = '/'
-    description = "Cluas's Blog Post"
+    description = "Cluas's Blog"
 
     def items(self):
-        return Post.objects.all()
+        return Post.published.all()[:5]
 
     def item_title(self, item):
         return '[{}]{}'.format(item.category, item.title)

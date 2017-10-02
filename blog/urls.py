@@ -1,6 +1,6 @@
 from django.conf.urls import url
 from . import views
-from blog.feeds import AllPostsRssFeed
+from blog.feeds import LatestPostsRssFeed
 
 
 urlpatterns = [
@@ -14,5 +14,5 @@ urlpatterns = [
     url('^category/$', views.category_list, name='category_list'),
     url(r'^category/(?P<name>.+)/$', views.CategoryDetailView.as_view(), name='category_detail'),
     url(r'^$', views.IndexView.as_view(), name='index'),
-    url(r'^all/rss/$', AllPostsRssFeed(), name='rss'),
+    url(r'^latest/rss/$', LatestPostsRssFeed(), name='rss'),
 ]
