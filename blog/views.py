@@ -1,17 +1,11 @@
-# import redis
 import markdown
-from django.conf import settings
 from django.shortcuts import render, get_object_or_404
 from .models import Post, Category, Tag
 from comments.forms import CommentForm
 from django.views.generic import ListView, DetailView
-from django.core.paginator import Paginator
 from django.utils.text import slugify
 from markdown.extensions.toc import TocExtension
 
-# r = redis.StrictRedis(settings.REDIS_HOST,
-#                       settings.REDIS_PORT,
-#                       settings.REDIS_DB)
 
 class IndexView(ListView):
     model = Post
@@ -20,20 +14,16 @@ class IndexView(ListView):
     paginate_by = 3
 
     def get_context_data(self, **kwargs):
-        context = super(IndexView,self).get_context_data(**kwargs)  # 获取当前context内容
+        context = super(IndexView, self).get_context_data(**kwargs)  # 获取当前context内容
         paginator = context.get('paginator')
         page = context.get('page_obj')
-
         is_paginated = context.get('is_paginated')
-
-        pagination_data = self.pagination_data(paginator, page, is_paginated)  # 自己写一个方法
-
+        pagination_data = self.pagination_data(paginator, page, is_paginated)  # 获取分页数据
         context.update(pagination_data)
-
         return context
 
     def get_queryset(self):
-        posts = super(IndexView,self).get_queryset().filter(status='2')
+        posts = super(IndexView, self).get_queryset().filter(status='2')
         return posts
 
     @staticmethod
@@ -68,7 +58,6 @@ class IndexView(ListView):
                 right_has_more = True
             if right[-1] < total_pages:
                 last = True
-
             if left[0] > 2:
                 left_has_more = True
             if left[0] > 1:
@@ -117,8 +106,7 @@ class PostDetailView(DetailView):
                                           TocExtension(slugify=slugify)
                                       ])
         post.body = md.convert(post.body)
-        if len(md.toc) > 35:
-            post.toc = md.toc
+        post.toc = md.toc
         return post
 
     def get_context_data(self, **kwargs):
@@ -130,40 +118,6 @@ class PostDetailView(DetailView):
             'comment_list': comment_list
         })
         return context
-
-
-def post_detail(request, year, month, day, id):
-    post = get_object_or_404(Post,
-                             id=id,
-                             status='发布',
-                             publish__year=year,
-                             publish__month=month,
-                             publish__day=day)
-    post.increase_views()
-    post.body = markdown.markdown(post.body,
-                                  extensions=[
-                                      'markdown.extensions.extra',
-                                      'markdown.extensions.codehilite',
-                                      'markdown.extensions.toc',
-                                  ])
-    form = CommentForm()
-    comments = post.comments.all()
-    return render(request,
-                  'blog/post/detail.html',
-                  {'post': post,
-                   'form': form,
-                   'comments': comments})
-
-
-# def index(request):
-#     posts = Post.published.all()
-#     return render(request, 'blog/post/index.html', {'posts': posts})
-
-
-# def archives(request, year, month):
-#     posts = Post.objects.filter(created__year=year,
-#                                 created__month=month)
-#     return render(request, 'blog/post/index.html', {'posts': posts})
 
 
 def category_list(request):
@@ -198,6 +152,3 @@ class TagDetailView(IndexView):
 
         })
         return context
-# def category(request, name):
-#     posts = Post.objects.filter(category__name=name)
-#     return render(request, 'blog/post/index.html', {'posts': posts})
