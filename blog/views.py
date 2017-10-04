@@ -1,7 +1,6 @@
 import markdown
 from django.shortcuts import render, get_object_or_404
 from .models import Post, Category, Tag
-from comments.forms import CommentForm
 from django.views.generic import ListView, DetailView
 from django.utils.text import slugify
 from markdown.extensions.toc import TocExtension
@@ -109,16 +108,6 @@ class PostDetailView(DetailView):
         if len(md.toc) > 35:
             post.toc = md.toc
         return post
-
-    def get_context_data(self, **kwargs):
-        context = super(PostDetailView, self).get_context_data(**kwargs)
-        form = CommentForm()
-        comment_list = self.object.comments.all()
-        context.update({
-            'form': form,
-            'comment_list': comment_list
-        })
-        return context
 
 
 def category_list(request):

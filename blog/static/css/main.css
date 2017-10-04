@@ -291,10 +291,12 @@ blockquote {
   padding: 0;
 }
 img {
-  display: block;
   margin: auto;
   max-width: 100%;
   height: auto;
+}
+.img-rounded{
+      border-radius: 6px;
 }
 hr {
   margin: 40px 0;
@@ -3003,3 +3005,6 @@ pre .javascript .function {
 .post-toc-content li {
             list-style: none;
         }
+.django-ckeditor-widget{
+  display: block !important;
+}

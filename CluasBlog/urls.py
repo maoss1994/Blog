@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.contrib.sitemaps.views import sitemap
 from blog.sitemaps import PostSitemap
 from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.views.generic.base import RedirectView
 
@@ -27,15 +28,20 @@ sitemaps = {
 
 
 urlpatterns = [
+    url(r'^notifications/', include('notifications.urls', namespace='notifications')),
     url(r'^$', RedirectView.as_view(url='blog')),
     url(r'^admin/', admin.site.urls),
     url(r'^blog/', include('blog.urls', namespace='blog')),
-    url(r'', include('comments.urls', namespace='comments')),
+    url(r'^accounts/', include('allauth.urls')),
+    url(r'', include('ckeditor_uploader.urls')),
+    url(r'', include('easy_comment.urls')),
+
+    # url(r'', include('comments.urls', namespace='comments')),
     url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
-]
+
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG or True:
-    import debug_toolbar
     urlpatterns += staticfiles_urlpatterns()
-    urlpatterns = [url(r'^__debug__/', include(debug_toolbar.urls)), ]+urlpatterns
+
 

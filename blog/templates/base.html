@@ -5,9 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="google-site-verification" content="VvyjvVXcJQa0QklHipu6pwm2PJGnnchIqX7s5JbbT_0">
+    <meta property="wb:webmaster" content="b0059bf0e1f39b05" />
     <link href="{% static 'fancybox/2.1.5/jquery.fancybox.min.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'font-awesome/4.6.2/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'css/main.css' %}" rel="stylesheet" type="text/css">
+    {% block css %}
+    {% endblock %}
     <meta name="keywords" content="Cluas">
     <link rel="alternate" href="{% url 'blog:rss' %}" title="Cluas&#39;s Blog" type="application/atom+xml">
     <link rel="shortcut icon" type="image/x-icon" href="{% static 'image/favicon.ico' %}">
@@ -276,5 +279,7 @@
 <script type="text/javascript" src="{% static 'static/js/av-core-mini-0.6.1.js' %}"></script>
 <link rel="stylesheet" href="{% static 'lib/algolia-instant-search/instantsearch.min.css' %}">
 <script type="text/javascript" src="{% static 'lib/algolia-instant-search/instantsearch.min.js' %}"></script>
+{% block script %}
+{% endblock %}
 </body>
 </html>

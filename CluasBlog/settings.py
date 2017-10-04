@@ -26,7 +26,6 @@ SECRET_KEY = '(6wc_zllww9rp5q=rfiqht_t7c4wx8ezmil4+uj$v#q+301y8)'
 DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost ', '.cluas.me']
-INTERNAL_IPS = ('127.0.0.1',)
 
 
 # Application definition
@@ -34,16 +33,28 @@ INTERNAL_IPS = ('127.0.0.1',)
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.sites',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'blog',
-    'comments',
-    'django.contrib.sites',
     'django.contrib.sitemaps',
+    'blog',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.weibo',
+    'allauth.socialaccount.providers.github',
+    # 搜索系统
     'algoliasearch_django',
-    'debug_toolbar',
+    # 评论系统
+    'ckeditor',
+    'ckeditor_uploader',
+    'mptt',
+    'easy_comment',
+    'notifications',
+    'online_status',
+
 ]
 
 MIDDLEWARE = [
@@ -151,5 +162,57 @@ REDIS_HOST = 'localhost'
 REDIS_PORT = 6379
 REDIS_DB = 0
 
+# QQ邮箱设置
+EMAIL_HOST = 'smtp.qq.com'
+EMAIL_PORT = 25
+EMAIL_HOST_USER = 'Cluas@qq.com'  # 你的 QQ 邮箱
+EMAIL_HOST_PASSWORD = 'wdidrotjsnzqbjef'
+EMAIL_USE_TLS = True  # 这里必须是 True，否则发送不成功
+EMAIL_FROM = 'Cluas@qq.com'  # 你的 QQ邮箱
 
 
+AUTHENTICATION_BACKENDS = (
+ # django admin所使用的用户登录与django-allauth无关
+    'django.contrib.auth.backends.ModelBackend',
+
+ # allauth specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+SITE_ID = 0
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+ACCOUNT_EMAIL_REQUIRED = False
+
+LOGIN_REDIRECT_URL = '/'
+ACCOUNT_EMAIL_VERIFICATION='none'
+LOGIN_URL = '/accounts/login'
+
+# 评论系统设置
+COMMENT_ENTRY_MODEL = 'blog.post'  # 格式是 app_name+model_name
+AUTH_USER_MODEL = 'auth.user'      # 格式是 app_name+model_name
+
+#ckeditor setup
+CKEDITOR_UPLOAD_PATH = 'upload/'
+CKEDITOR_IMAGE_BACKEND = 'pillow'
+CKEDITOR_CONFIGS = {
+    'default': {
+        # 编辑器的宽高请根据你的页面自行设置
+        'width':'**%',
+        'height':'150px',
+        'image_previewText':' ',
+        'tabSpaces': 4,
+        'toolbar': 'Custom',
+        'toolbar_Custom': [
+            ['Bold', 'Italic', 'Underline', 'Format', 'RemoveFormat'],
+            ['NumberedList', 'BulletedList'],
+            ['Blockquote', 'CodeSnippet'],
+            ['Image', 'Link', 'Unlink']
+        ],
+        'extraPlugins': ','.join(['codesnippet','uploadimage','prism','widget','lineutils',]),
+    }
+}
+CKEDITOR_ALLOW_NONIMAGE_FILES = False
+# 限制用户查看上传图片的权限， 只能看自己传的图片
+CKEDITOR_RESTRICT_BY_USER = True
+CKEDITOR_RESTRICT_BY_DATE = True
+CKEDITOR_BROWSE_SHOW_DIRS = True
