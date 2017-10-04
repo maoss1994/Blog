@@ -3008,3 +3008,9 @@ pre .javascript .function {
 .django-ckeditor-widget{
   display: block !important;
 }
+#comments  a{
+  border-bottom:none;
+}
+#comments  a .fa-weibo{
+  color: #e34603;
+}
