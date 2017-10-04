@@ -15,7 +15,7 @@
             <div class="row {% if node.is_root_node %}comment-root{% else %}comment-leaf{% endif %}" id="c{{ node.id }}">
                 <div class="col-md-1 comment-left">
                     <a class="comment-avatar">
-                        <img src="{% static user.socialaccount_set.all.0.get_avatar_url %}" alt="{{ node.user_name }}头像">
+                        <img src="{{ user.socialaccount_set.all.0.get_avatar_url }}" alt="{{ node.user_name }}头像">
                     </a>
                 </div>
                 <div class="col-md-11 comment-right">

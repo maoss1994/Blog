@@ -7,7 +7,7 @@
     <div class="comment-header">
         <sapn class="comment-avatar">
             <img class="img-rounded" src="{% if user.socialaccount_set.all.0.get_avatar_url %}
-{% static user.socialaccount_set.all.0.get_avatar_url %}{% else %}{% static 'image/1.png' %}{% endif %}">
+{{ user.socialaccount_set.all.0.get_avatar_url }}{% else %}{% static 'image/1.png' %}{% endif %}">
         </sapn>
         <span><strong>
             {{ request.user.username }}
