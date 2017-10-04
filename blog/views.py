@@ -1,12 +1,17 @@
+# import redis
+import markdown
+from django.conf import settings
 from django.shortcuts import render, get_object_or_404
 from .models import Post, Category, Tag
-import markdown
 from comments.forms import CommentForm
 from django.views.generic import ListView, DetailView
 from django.core.paginator import Paginator
 from django.utils.text import slugify
 from markdown.extensions.toc import TocExtension
 
+# r = redis.StrictRedis(settings.REDIS_HOST,
+#                       settings.REDIS_PORT,
+#                       settings.REDIS_DB)
 
 class IndexView(ListView):
     model = Post
