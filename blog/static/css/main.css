@@ -2996,3 +2996,10 @@ pre .javascript .function {
     text-align: justify;
   }
 }
+
+.post-toc-content ul {
+            text-align: left;
+        }
+.post-toc-content li {
+            list-style: none;
+        }
