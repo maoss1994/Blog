@@ -12,7 +12,7 @@
         <span><strong>
             {{ request.user.username }}
         </strong></span>
-        <span class="glyphicon glyphicon-edit"></span>
+        <span class="fa fa-edit"></span>
         <span id="reply-to" style="display:none;">回复：<a class="reply-to-name" href="javascript:void(0);">@Cluas</a></span>
     </div>
     <form class="comment-form" method="post" action="{% url 'easy_comment:submit_comment' post.id %}">
