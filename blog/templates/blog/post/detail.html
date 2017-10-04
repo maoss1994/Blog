@@ -16,8 +16,8 @@
                                 <i class="fa fa-calendar-o"></i>
                               </span>
                               <span class="post-meta-item-text">发表于</span>
-                              <time title="创建于" datetime="{{ post.created }}">
-                                {{ post.created }}
+                              <time title="创建于" datetime="{{ post.publish }}">
+                                {{ post.publish }}
                               </time>
                                 </span>
                             <span class="post-category"><span class="post-meta-divider">|</span>
@@ -77,19 +77,19 @@
                         </div>
                         <div class="post-nav">
                             <div class="post-nav-next post-nav-item">
-                                {% if post.get_previous_by_created %}
-                                    <a href="{{ post.get_previous_by_created.get_absolute_url }}" rel="next"
-                                       title="{{ post.get_previous_by_created.title }}"><i
+                                {% if post.get_previous_by_publish %}
+                                    <a href="{{ post.get_previous_by_publish.get_absolute_url }}" rel="next"
+                                       title="{{ post.get_previous_by_publish.title }}"><i
                                             class="fa fa-chevron-left"></i>
-                                        {{ post.get_previous_by_created.title|truncatechars:'15' }}</a>
+                                        {{ post.get_previous_by_publish.title|truncatechars:'15' }}</a>
                                 {% endif %}
                             </div>
                             <span class="post-nav-divider"></span>
                             <div class="post-nav-prev post-nav-item">
-                                {% if post.get_next_by_created %}
-                                    <a href="{{ post.get_next_by_created.get_absolute_url }}" rel="next"
-                                       title="{{ post.get_next_by_created.title }}">
-                                        {{ post.get_next_by_created.title }}
+                                {% if post.get_next_by_publish %}
+                                    <a href="{{ post.get_next_by_publish.get_absolute_url }}" rel="next"
+                                       title="{{ post.get_next_by_publish.title }}">
+                                        {{ post.get_next_by_publish.title }}
                                         <i class="fa fa-chevron-right"></i>
                                     </a>
                                 {% endif %}
