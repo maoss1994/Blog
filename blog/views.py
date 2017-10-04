@@ -106,7 +106,8 @@ class PostDetailView(DetailView):
                                           TocExtension(slugify=slugify)
                                       ])
         post.body = md.convert(post.body)
-        post.toc = md.toc
+        if len(md.toc) > 35:
+            post.toc = md.toc
         return post
 
     def get_context_data(self, **kwargs):
