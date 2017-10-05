@@ -16,7 +16,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="{% static 'image/favicon.ico' %}">
     <meta name="description" content="Trust yourself！">
     <script type="text/javascript">
-        var NexT = window.NexT || {};
+        var CLUAS = window.CLUAS || {};
         var CONFIG = {
             root: '/',
             scheme: 'Pisces',
@@ -30,10 +30,6 @@
             },
             fancybox: true,
             motion: true,
-            duoshuo: {
-                userId: '0',
-                author: '博主'
-            },
             {% algolia as algolia %}
             algolia: {
                 applicationID: '{{ algolia.appID }}',
@@ -54,16 +50,7 @@
         .fancybox-margin {
             margin-right: 0px;
         }
-
-        span.highlighted {
-            color: red;
-        }
-
-        .post-toc-content ul {
-            text-align: left;
-        }
     </style>
-    <script src="{% static 'js/count-data.js' %}"></script>
 </head>
 <body lang="zh-Hans">
 <div class="container sidebar-position-left page-home">
@@ -275,8 +262,6 @@
 <script type="text/javascript" src="{% static 'js/src/post-details.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/src/bootstrap.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/src/algolia-search.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/src/post-details.js' %}"></script>
-<script type="text/javascript" src="{% static 'static/js/av-core-mini-0.6.1.js' %}"></script>
 <link rel="stylesheet" href="{% static 'lib/algolia-instant-search/instantsearch.min.css' %}">
 <script type="text/javascript" src="{% static 'lib/algolia-instant-search/instantsearch.min.js' %}"></script>
 {% block script %}
