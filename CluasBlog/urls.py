@@ -21,6 +21,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.views.generic.base import RedirectView
+from blog.views import IndexView
 
 sitemaps = {
     'posts': PostSitemap,
@@ -29,7 +30,7 @@ sitemaps = {
 
 urlpatterns = [
     url(r'^notifications/', include('notifications.urls', namespace='notifications')),
-    url(r'^$', RedirectView.as_view(url='blog')),
+    url(r'^$', IndexView.as_view()),
     url(r'^admin/', admin.site.urls),
     url(r'^blog/', include('blog.urls', namespace='blog')),
     url(r'^accounts/', include('allauth.urls')),
