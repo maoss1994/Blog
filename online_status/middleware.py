@@ -5,6 +5,7 @@ from . import settings
 from .models import OnlineStatus
 from django.utils.deprecation import MiddlewareMixin
 
+
 class OnlineStatusMiddleware(MiddlewareMixin):
 
     def process_request(self, request):

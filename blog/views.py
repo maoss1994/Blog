@@ -74,7 +74,7 @@ class IndexView(ListView):
 
 class ArchivesView(IndexView):
     model = Post
-    template_name = 'blog/archives.html'
+    template_name = 'blog/archives/archives.html'
     context_object_name = 'posts'
     paginate_by = 6
 
@@ -111,11 +111,11 @@ class PostDetailView(DetailView):
 
 
 def category_list(request):
-    return render(request, 'blog/post/category.html')
+    return render(request, 'blog/category/category.html')
 
 
 class CategoryDetailView(IndexView):
-    template_name = 'blog/post/category_detail.html'
+    template_name = 'blog/category/category_detail.html'
     paginate_by = 5
 
     def get_queryset(self):
@@ -124,11 +124,11 @@ class CategoryDetailView(IndexView):
 
 
 def post_tags(request):
-    return render(request, 'blog/post/tags.html', {'status': 'tags'})
+    return render(request, 'blog/tag/tags.html', {'status': 'tags'})
 
 
 class TagDetailView(IndexView):
-    template_name = 'blog/post/tag_detail.html'
+    template_name = 'blog/tag/tag_detail.html'
 
     def get_queryset(self):
         tags = get_object_or_404(Tag, name=self.kwargs.get('name'))
