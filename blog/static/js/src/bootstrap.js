@@ -1,16 +1,16 @@
-/* global NexT: true */
+/* global CLUAS: true */
 
 $(document).ready(function () {
 
   $(document).trigger('bootstrap:before');
 
-  NexT.utils.isMobile() && window.FastClick.attach(document.body);
+  CLUAS.utils.isMobile() && window.FastClick.attach(document.body);
 
-  NexT.utils.lazyLoadPostsImages();
+  CLUAS.utils.lazyLoadPostsImages();
 
-  NexT.utils.registerESCKeyEvent();
+  CLUAS.utils.registerESCKeyEvent();
 
-  NexT.utils.registerBackToTop();
+  CLUAS.utils.registerBackToTop();
 
   $('.site-nav-toggle button').on('click', function () {
     var $siteNav = $('.site-nav');
@@ -25,22 +25,22 @@ $(document).ready(function () {
   });
 
 
-  CONFIG.fancybox && NexT.utils.wrapImageWithFancyBox();
-  NexT.utils.embeddedVideoTransformer();
-  NexT.utils.addActiveClassToMenuItem();
+  CONFIG.fancybox && CLUAS.utils.wrapImageWithFancyBox();
+  CLUAS.utils.embeddedVideoTransformer();
+  CLUAS.utils.addActiveClassToMenuItem();
 
 
   // Define Motion Sequence.
-  NexT.motion.integrator
-    .add(NexT.motion.middleWares.logo)
-    .add(NexT.motion.middleWares.menu)
-    .add(NexT.motion.middleWares.postList)
-    .add(NexT.motion.middleWares.sidebar);
+  CLUAS.motion.integrator
+    .add(CLUAS.motion.middleWares.logo)
+    .add(CLUAS.motion.middleWares.menu)
+    .add(CLUAS.motion.middleWares.postList)
+    .add(CLUAS.motion.middleWares.sidebar);
 
   $(document).trigger('motion:before');
 
   // Bootstrap Motion.
-  CONFIG.motion && NexT.motion.integrator.bootstrap();
+  CONFIG.motion && CLUAS.motion.integrator.bootstrap();
 
   $(document).trigger('bootstrap:after');
 });

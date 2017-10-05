@@ -1,9 +1,9 @@
-/* global NexT: true */
+/* global CLUAS: true */
 
 $(document).ready(function () {
 
   initScrollSpy();
-  NexT.utils.needAffix() && initAffix();
+  CLUAS.utils.needAffix() && initAffix();
   initTOCDimension();
 
   function initScrollSpy () {
@@ -69,7 +69,7 @@ $(document).ready(function () {
     updateTOCHeight(document.body.clientHeight - 100);
 
     // Initialize TOC Width.
-    var scrollbarWidth = NexT.utils.getScrollbarWidth();
+    var scrollbarWidth = CLUAS.utils.getScrollbarWidth();
     $('.post-toc').css('width', 'calc(100% + ' + scrollbarWidth + 'px)');
   }
 
@@ -120,7 +120,7 @@ $(document).ready(function () {
 
   $('.post-toc a').on('click', function (e) {
     e.preventDefault();
-    var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+    var targetSelector = CLUAS.utils.escapeSelector(this.getAttribute('href'));
     var offset = $(targetSelector).offset().top;
 
     hasVelocity ?
@@ -140,8 +140,8 @@ $(document).ready(function () {
   var hasTOC = $tocContent.length > 0 && $tocContent.html().trim().length > 0;
   if (isSidebarCouldDisplay && hasTOC) {
     CONFIG.motion ?
-      (NexT.motion.middleWares.sidebar = function () {
-          NexT.utils.displaySidebar();
-      }) : NexT.utils.displaySidebar();
+      (CLUAS.motion.middleWares.sidebar = function () {
+          CLUAS.utils.displaySidebar();
+      }) : CLUAS.utils.displaySidebar();
   }
 });

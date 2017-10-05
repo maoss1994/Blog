@@ -1,7 +1,7 @@
-/* global NexT: true */
+/* global CLUAS: true */
 
 $(document).ready(function () {
-  NexT.motion = {};
+  CLUAS.motion = {};
 
   var sidebarToggleLines = {
     lines: [],
@@ -91,7 +91,7 @@ $(document).ready(function () {
 
       $(document)
         .on('sidebar.isShowing', function () {
-          NexT.utils.isDesktop() && $('body').velocity('stop').velocity(
+          CLUAS.utils.isDesktop() && $('body').velocity('stop').velocity(
             {paddingRight: SIDEBAR_WIDTH},
             SIDEBAR_DISPLAY_DURATION
           );
@@ -147,7 +147,7 @@ $(document).ready(function () {
       this.sidebarEl.trigger('sidebar.isShowing');
     },
     hideSidebar: function () {
-      NexT.utils.isDesktop() && $('body').velocity('stop').velocity({paddingRight: 0});
+      CLUAS.utils.isDesktop() && $('body').velocity('stop').velocity({paddingRight: 0});
       this.sidebarEl.find('.motion-element').velocity('stop').css('display', 'none');
       this.sidebarEl.velocity('stop').velocity({width: 0}, {display: 'none'});
 
@@ -167,7 +167,7 @@ $(document).ready(function () {
   };
   sidebarToggleMotion.init();
 
-  NexT.motion.integrator = {
+  CLUAS.motion.integrator = {
     queue: [],
     cursor: -1,
     add: function (fn) {
@@ -177,14 +177,14 @@ $(document).ready(function () {
     next: function () {
       this.cursor++;
       var fn = this.queue[this.cursor];
-      $.isFunction(fn) && fn(NexT.motion.integrator);
+      $.isFunction(fn) && fn(CLUAS.motion.integrator);
     },
     bootstrap: function () {
       this.next();
     }
   };
 
-  NexT.motion.middleWares =  {
+  CLUAS.motion.middleWares =  {
     logo: function (integrator) {
       var sequence = [];
       var $brand = $('.brand');
@@ -199,7 +199,7 @@ $(document).ready(function () {
         o: {duration: 200}
       });
 
-      NexT.utils.isMist() && hasElement([$logoLineTop, $logoLineBottom]) &&
+      CLUAS.utils.isMist() && hasElement([$logoLineTop, $logoLineBottom]) &&
       sequence.push(
         getMistLineSettings($logoLineTop, '100%'),
         getMistLineSettings($logoLineBottom, '-100%')
@@ -282,7 +282,7 @@ $(document).ready(function () {
 
     sidebar: function (integrator) {
       if (CONFIG.sidebar.display === 'always') {
-        NexT.utils.displaySidebar();
+        CLUAS.utils.displaySidebar();
       }
       integrator.next();
     }

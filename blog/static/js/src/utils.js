@@ -1,6 +1,6 @@
-/* global NexT: true */
+/* global CLUAS: true */
 
-NexT.utils = NexT.$u = {
+CLUAS.utils = CLUAS.$u = {
   /**
    * Wrap images with fancybox support.
    */

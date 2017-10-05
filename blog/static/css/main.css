@@ -3014,3 +3014,7 @@ pre .javascript .function {
 #comments  a .fa-weibo{
   color: #e34603;
 }
+
+span.highlighted {
+  color: red;
+}
