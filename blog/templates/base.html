@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="google-site-verification" content="VvyjvVXcJQa0QklHipu6pwm2PJGnnchIqX7s5JbbT_0">
     <meta property="wb:webmaster" content="b0059bf0e1f39b05" />
+    <title>{% block title %}Cluas&#39;s Blog{% endblock %}</title>
     <link href="{% static 'fancybox/2.1.5/jquery.fancybox.min.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'font-awesome/4.6.2/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'css/main.css' %}" rel="stylesheet" type="text/css">
@@ -45,7 +46,6 @@
         };
     </script>
     <link rel="canonical" href="http://ww.cluas.me/">
-    <title>Cluas&#39;s Blog</title>
     <style type="text/css">
         .fancybox-margin {
             margin-right: 0px;
@@ -207,8 +207,6 @@
                         </div>
                     </section>
                     {% block toc %}
-                    {% endblock %}
-                    {% block section %}
                     {% endblock %}
                 </div>
             </aside>
