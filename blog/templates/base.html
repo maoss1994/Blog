@@ -2,11 +2,11 @@
 <html class="theme-next pisces use-motion" lang="zh-Hans">
 <head>
     <meta name="baidu-site-verification" content="f3pd3lmpkj" />
+    <meta property="wb:webmaster" content="b0059bf0e1f39b05" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="google-site-verification" content="VvyjvVXcJQa0QklHipu6pwm2PJGnnchIqX7s5JbbT_0">
-    <meta property="wb:webmaster" content="b0059bf0e1f39b05" />
+
     <title>{% block title %}Cluas&#39;s Blog{% endblock %}</title>
     <link href="{% static 'fancybox/2.1.5/jquery.fancybox.min.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'font-awesome/4.6.2/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
@@ -47,11 +47,6 @@
         };
     </script>
     <link rel="canonical" href="http://ww.cluas.me/">
-    <style type="text/css">
-        .fancybox-margin {
-            margin-right: 0px;
-        }
-    </style>
 </head>
 <body lang="zh-Hans">
 <div class="container sidebar-position-left page-home">
@@ -63,11 +58,11 @@
                     <div class="custom-logo-site-title">
                         <a href="{% url 'blog:index' %}" class="brand" rel="start">
                             <span class="logo-line-before"><i></i></span>
-                            <span class="site-title" style="opacity: 1; top: 0px;">Cluas&#39;s Blog</span>
+                            <span class="site-title" >Cluas&#39;s Blog</span>
                             <span class="logo-line-after"><i></i></span>
                         </a>
                     </div>
-                    <p class="site-subtitle" style="opacity: 1; top: 0;">Trust yourself！</p>
+                    <p class="site-subtitle">Trust yourself！</p>
                 </div>
                 <div class="site-nav-toggle">
                     <button>
@@ -79,23 +74,22 @@
             </div>
             <nav class="site-nav">
                 <ul id="menu" class="menu">
-                    <li class="menu-item menu-item-home {% if not status%}menu-item-active{% endif %}"
-                        style="opacity: 1; transform: translateY(0px);">
+                    <li class="menu-item menu-item-home {% if not status%}menu-item-active{% endif %}">
                         <a href="{% url 'blog:index' %}" rel="section">
                             <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页
                         </a>
                     </li>
-                    <li class="menu-item menu-item-archives {% if status == 'archives' %}menu-item-active{% endif %}" style="opacity: 1; transform: translateY(0px);">
+                    <li class="menu-item menu-item-archives {% if status == 'archives' %}menu-item-active{% endif %}" >
                         <a href="{% url 'blog:archives' %}" rel="section">
                             <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档
                         </a>
                     </li>
-                    <li class="menu-item menu-item-tags {% if status == 'tags' %}menu-item-active{% endif %}" style="opacity: 1; transform: translateY(0px);">
+                    <li class="menu-item menu-item-tags {% if status == 'tags' %}menu-item-active{% endif %}">
                         <a href="{% url 'blog:post_tags' %}" rel="section">
                             <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签
                         </a>
                     </li>
-                    <li class="menu-item menu-item-search" style="opacity: 1; transform: translateY(0px);">
+                    <li class="menu-item menu-item-search">
                         <a href="javascript:" class="popup-trigger">
                             <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索
                         </a>
@@ -135,7 +129,7 @@
                     <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
                 </div>
             </div>
-            <aside id="sidebar" class="sidebar" style="margin-top: 306px; display: block;">
+            <aside id="sidebar" class="sidebar">
                 <div class="sidebar-inner {% if post.toc %}affix-top{% endif %}">
                     {% if post.toc %}
                         <ul class="sidebar-nav motion-element">
@@ -147,8 +141,7 @@
                             </li>
                         </ul>
                     {% endif %}
-                    <section
-                            class="site-overview sidebar-panel {% if post.toc %} {% else %}sidebar-panel-active{% endif %}">
+                    <section class="site-overview sidebar-panel {% if post.toc %} {% else %}sidebar-panel-active{% endif %}">
                         <div class="site-author motion-element">
                             <img class="site-author-image" src="{% static 'image/1.png' %}" alt="Cluas">
                             <p class="site-author-name">Cluas</p>
@@ -181,30 +174,30 @@
                             </a>
                         </div>
                         <div class="links-of-author motion-element">
-                <span class="links-of-author-item">
-                    <a href="https://github.com/Cluas" target="_blank" title="GitHub">
-                        <i class="fa fa-fw fa-github"></i>
-                        GitHub
-                    </a>
-                </span>
                             <span class="links-of-author-item">
-                    <a href="#" target="_blank" title="WeiXin">
-                        <i class="fa fa-fw fa-weixin"></i>
-                        微信
-                    </a>
-                </span>
+                                <a href="https://github.com/Cluas" target="_blank" title="GitHub">
+                                    <i class="fa fa-fw fa-github"></i>
+                                    GitHub
+                                </a>
+                            </span>
                             <span class="links-of-author-item">
-                    <a href="https://weibo.com/172074443/" target="_blank" title="微博">
-                        <i class="fa fa-fw fa-weibo"></i>
-                        微博
-                    </a>
-                </span>
+                                <a href="#" target="_blank" title="WeiXin">
+                                    <i class="fa fa-fw fa-weixin"></i>
+                                    微信
+                                </a>
+                            </span>
                             <span class="links-of-author-item">
-                    <a href="https://www.zhihu.com/people/cluas/" target="_blank" title="知乎">
-                        <i class="fa fa-fw fa-heart"></i>
-                        知乎
-                    </a>
-                </span>
+                                <a href="https://weibo.com/172074443/" target="_blank" title="微博">
+                                    <i class="fa fa-fw fa-weibo"></i>
+                                    微博
+                                </a>
+                            </span>
+                            <span class="links-of-author-item">
+                                <a href="https://www.zhihu.com/people/cluas/" target="_blank" title="知乎">
+                                    <i class="fa fa-fw fa-heart"></i>
+                                    知乎
+                                </a>
+                            </span>
                         </div>
                     </section>
                     {% block toc %}
@@ -217,12 +210,8 @@
     <footer id="footer" class="footer">
         <div class="footer-inner">
             <div class="copyright">
-                © 2011 -
-                <span>2017</span>
-                <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-                <span class="author">Cluas</span>
+                © 2011 - <span>2017</span> <span class="with-love">
+                <i class="fa fa-heart"></i></span> <span class="author">Cluas</span>
             </div>
 
             <div class="powered-by">
@@ -230,16 +219,12 @@
             </div>
 
             <div class="theme-info">
-                源码 -
-                <a class="theme-link" href="https://github.com/cluas/blog">
-                    Cluas's Blog
-                </a>
+                源码 - <a class="theme-link" href="https://github.com/cluas/blog"> Cluas's Blog </a>
             </div>
         </div>
     </footer>
     <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        <span id="scrollpercent"><span>0</span>%</span>
+        <i class="fa fa-arrow-up"></i> <span id="scrollpercent"><span>0</span>%</span>
     </div>
 </div>
 <script type="text/javascript">
