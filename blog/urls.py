@@ -1,9 +1,10 @@
 from django.conf.urls import url
 from . import views
 from blog.feeds import LatestPostsRssFeed
-
+from django.contrib import admin
 
 urlpatterns = [
+    url(r'^admin/', admin.site.urls),
     url(r'^archives/$', views.ArchivesView.as_view(), name='archives'),
     # url(r'^(?P<year>\d+)/(?P<month>\d+)/(?P<day>\d+)/(?P<id>\d+)/$',
     #     views.post_detail, name='post_detail'),

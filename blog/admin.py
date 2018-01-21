@@ -1,3 +1,7 @@
+import sys
+reload(sys);
+sys.setdefaultencoding("utf8")
+
 from django.contrib import admin
 from .models import Post, Category, Tag
 

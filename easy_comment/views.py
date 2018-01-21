@@ -1,3 +1,4 @@
+#encoding:utf-8 
 from .forms import CommentForm
 from .models import Comment, Like
 from django.http import JsonResponse

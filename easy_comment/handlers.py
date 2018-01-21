@@ -1,3 +1,4 @@
+#encoding:utf-8 
 from django.db.models.signals import post_save
 from .models import Comment, Like
 from notifications.signals import notify

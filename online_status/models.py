@@ -1,3 +1,4 @@
+#encoding:utf-8 
 from django.db import models
 from . import settings
 from django.core.cache import cache

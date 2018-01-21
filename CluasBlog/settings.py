@@ -1,3 +1,4 @@
+#encoding:utf-8 
 """
 Django settings for CluasBlog project.
 
@@ -23,10 +24,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '(6wc_zllww9rp5q=rfiqht_t7c4wx8ezmil4+uj$v#q+301y8)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost ', '.cluas.me']
-
+#ALLOWED_HOSTS = ['127.0.0.1', 'localhost ', '.cluas.me']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -74,7 +75,8 @@ ROOT_URLCONF = 'CluasBlog.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
+        'DIRS': [os.path.join(BASE_DIR, 'templates'),
+			os.path.join(BASE_DIR, 'static'), ]
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -94,12 +96,15 @@ WSGI_APPLICATION = 'CluasBlog.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+
 
 
 # Password validation
@@ -140,9 +145,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFILES_ROOT = (
-    os.path.join(BASE_DIR, 'static'),
-)
+#STATICFILES_ROOT = (
+#    os.path.join(BASE_DIR, 'static'),
+#)
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
@@ -165,10 +170,10 @@ REDIS_DB = 0
 # QQ邮箱设置
 EMAIL_HOST = 'smtp.qq.com'
 EMAIL_PORT = 25
-EMAIL_HOST_USER = 'Cluas@qq.com'  # 你的 QQ 邮箱
-EMAIL_HOST_PASSWORD = 'wdidrotjsnzqbjef'
+EMAIL_HOST_USER = '272218878@qq.com'  # 你的 QQ 邮箱
+EMAIL_HOST_PASSWORD = 'Sandymao6161521'
 EMAIL_USE_TLS = True  # 这里必须是 True，否则发送不成功
-EMAIL_FROM = 'Cluas@qq.com'  # 你的 QQ邮箱
+EMAIL_FROM = '272218878@qq.com'  # 你的 QQ邮箱
 
 
 AUTHENTICATION_BACKENDS = (
